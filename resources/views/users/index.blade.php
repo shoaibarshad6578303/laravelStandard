@@ -31,7 +31,7 @@
                 </button>
 
               <div class="container">
-                <form action="{{route(users.store)}}" method="post">
+                <form action="{{route('users.store')}}" method="post">
                     @csrf
                   <input name="name" type="text">
                   <input name="email" type="email">
