@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Actions\StoreUserAction;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -17,6 +19,14 @@ class UserController extends Controller
      */
     public function index()
     {
+        User::create(['name'=>'abcg', 'email'=>'11@gmail.com', 'password'=>'1234455']);
+
+        $users = Cache::remember('users', 120, function () {
+            return DB::table('users')->get();
+        });
+
+        dd($users);
+        
         return view('users.index');
     }
 
@@ -27,7 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
