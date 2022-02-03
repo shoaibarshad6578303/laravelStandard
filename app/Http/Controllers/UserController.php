@@ -9,6 +9,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Actions\StoreUserAction;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use App\Actions\UserReport;
 
 class UserController extends Controller
 {
@@ -19,6 +20,10 @@ class UserController extends Controller
      */
     public function index()
     {
+       
+        $userReport=new UserReport();
+        // $userReport->getName();
+        dd($userReport->getName());
         User::create(['name'=>'abcg', 'email'=>'11@gmail.com', 'password'=>'1234455']);
 
         $users = Cache::remember('users', 120, function () {
